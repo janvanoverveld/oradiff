@@ -1,0 +1,27 @@
+import * as oracledb from 'oracledb';
+
+enum environments {
+    prd = "PRD",
+    tst = "TST",
+    dev = "DEV"
+}
+
+const connecties:Map<string,oracledb.ConnectionAttributes> = new Map();
+
+const envprd:oracledb.ConnectionAttributes = { user      : "scott"
+,                                              password  : "tiger"
+,                                          connectString : "localhost:1521/ORAPRD" };
+
+const envdev:oracledb.ConnectionAttributes = { user      : "scott"
+,                                              password  : "tiger"
+,                                          connectString : "localhost:1521/ORATST" };
+
+const envtst:oracledb.ConnectionAttributes = { user      : "pete"
+,                                              password  : "zone"
+,                                          connectString : "localhost:1521/ORADEV" };
+
+connecties.set(environments.prd,envprd);
+connecties.set(environments.tst,envtst);
+connecties.set(environments.dev,envdev);
+
+export {environments,connecties}

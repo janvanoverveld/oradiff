@@ -2,7 +2,7 @@
   "name": "oradiff",
   "version": "1.0.0",
   "description": "ddl retriever and ddl comparison",
-  "main": "index.js",
+  "main": "oradiff.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

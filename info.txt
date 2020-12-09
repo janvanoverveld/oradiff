@@ -3,3 +3,9 @@ https://github.com/oracle/node-oracledb
 https://github.com/oracle/node-oracledb.git
 
 https://github.com/janvanoverveld/LayerThreeCode
+
+//
+// const databaseConfiguration:oracledb.ConnectionAttributes = { user : "username" , password  : "password", connectString : "localhost:31521/HERA" };
+//
+
+https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/oracledb/oracledb-tests.ts
