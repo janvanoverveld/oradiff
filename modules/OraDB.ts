@@ -11,7 +11,7 @@ class OraDB {
       const promise = new Promise<OraDB>(
         async (resolve, reject) => {
            const connection:oracledb.Connection = await oracledb.getConnection(dbConfig);
-           console.log(`Connection was successful!  ${connection}`);
+           //console.log(`Connection was successful!  ${connection}`);
            //if (!this.connection) throw Error("Connectie maken niet gelukt.");
            const oraDb:OraDB = new OraDB(connection);
            resolve(oraDb);
@@ -28,8 +28,9 @@ class OraDB {
                        order by 1,2,3`;
        const result:oracledb.Result<[string]> = await this.connection.execute( query, {object_name:object_name}, { maxRows: 100});
        const rs = result.resultSet;
-       let ddlObjects:oracleDdlObject[] = [];
+       let ddlObjects:oracleDdlObject[]|null = null;
        if ( result.rows ) {
+         ddlObjects = [];
          for ( let row of result.rows){
             //console.log(`${row}`);
             // @ts-ignore
@@ -37,7 +38,7 @@ class OraDB {
             ddlObjects.push(ddlObject);
          }
        }
-       if ( this.getObjectsResolver && result && result.rows && result.rows.length > 0 ){
+       if ( this.getObjectsResolver && ddlObjects ){
          this.getObjectsResolver(ddlObjects);
        }
        return promise;

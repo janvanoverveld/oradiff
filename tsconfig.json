@@ -68,9 +68,11 @@
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
   },
   "files": [
+    "oraget.ts",
     "oradiff.ts",
-    "admin/dbConnectie.ts",
     "modules/OraDB.ts",
+    "modules/DDLRetriever.ts",
+    "modules/Environments.ts",
     "modules/various.ts"
     ]
 }

@@ -1,7 +1,7 @@
 import * as fs       from 'fs';
-import {environments,connecties} from './admin/dbConnectie';
+import {environments} from './modules/Environments';
 import {OraDB} from './modules/OraDB';
-
+/*
 const writeFile:(path:string,data:string)=>Promise<void> = (p,d) => new Promise( (resolve, reject) => fs.writeFile(p, d, 'utf8', (err) => { if (err) reject(err); else resolve(); }) );
 
 let writeDdlFileResolver:(()=>void)|null = null;
@@ -50,16 +50,44 @@ async function run(object_name:string) {
   console.log(`eind    ${new Date()} `);
 }
 
+function printHelp(){
+  console.log(`
+     The program oraget is used for getting ddl code from an oracle database and save it as a text file.
+     The program oraget returs the ddl source code in the folder ./generatedSourceCode
+
+     node js/oraget parA parB
+     parA = name of ddl object in Oracle database
+     parB = the initial of the environment (P=production, T=test, D=development)
+
+     examples for calling oraget are:
+     node js/oraget DUMMY_PKG      -- get the package spec and body from DUMMY_PKG from production
+     node js/oraget DUMMY_PKG P    -- get the package spec and body from DUMMY_PKG from production
+     node js/oraget DUMMY_PKG T    -- get the package spec and body from DUMMY_PKG from test
+     node js/oraget DUMMY_PKG D    -- get the package spec and body from DUMMY_PKG from development
+  `);
+}
+
 function starter(pars:string[]){
 
-  console.log(`${pars}`);
-  if (!pars[2]) {
-      console.log(`There are no parameters specified, try 'node js/start help' for more information.`);
+  //console.log(`${pars}`);
+  if ( !pars[2] ) {
+      console.log(`There are no parameters specified, try 'node js/oradiff help' for more information.`);
       return;
   }
+
+  if ( pars[3] && pars[3]) {
+    console.log(`There are no parameters specified, try 'node js/oradiff help' for more information.`);
+    return;
+  }
+
+  if (pars[2].toLowerCase() === 'help' ) {
+    printHelp();
+    return;
+}
 
   run(pars[2].toUpperCase());
 
 }
 
 starter(process.argv);
+*/
