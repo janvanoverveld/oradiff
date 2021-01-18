@@ -25,7 +25,6 @@ async function writeDdlFile(filename:string,source:string):Promise<void>{
   if (!fs.existsSync(ddlSourceCodeDir)) {
       fs.mkdirSync(ddlSourceCodeDir);
   }
-
   writeFile(ddlSourceCodeDir+filename,source).then( () => {
     if (writeDdlFileResolver){
       writeDdlFileResolver();

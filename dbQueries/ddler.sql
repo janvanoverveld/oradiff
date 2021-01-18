@@ -80,3 +80,9 @@ is
    end getddl;
 end DDLER;
 /
+
+drop role ddler_role;
+create role ddler_role;
+grant select any dictionary to ddler_role;
+grant SELECT_CATALOG_ROLE to ddler_role;
+grant ddler_role to package ddler;

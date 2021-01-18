@@ -53,19 +53,23 @@ class OraDB {
        const bindings = { OWNER: owner
        ,                   TYPE: type
        ,                   NAME: naam
-       ,               filename: { dir: oracledb.BIND_OUT, type: oracledb.STRING, maxSize: 2000 }
-       ,                    ddl: { dir: oracledb.BIND_OUT, type: oracledb.STRING, maxSize: 32767 }
-     };
+       ,               filename: { dir: oracledb.BIND_OUT, type: oracledb.STRING, maxSize: 2000     }
+       ,                    ddl: { dir: oracledb.BIND_OUT, type: oracledb.STRING, maxSize: 10000000 }
+       };
 
-       const result:oracledb.Result<string> = await this.connection.execute( plsql, bindings );
+       // info over clobs in javascript 
+       // https://github.com/oracle/node-oracledb/blob/master/doc/api.md#queryinglobs
+
+       // @ts-ignore
+       const result:oracledb.Result = await this.connection.execute( plsql, bindings );
        // @ts-ignore
        const source = result.outBinds.ddl as string;
        // @ts-ignore
        const filename = result.outBinds.filename as string;
        const ddl:ddlType={filename:filename,source:source};
        if ( this.getDdlResolver && ddl ){
-         console.log(`filename = ${ddl.filename}`);
-         this.getDdlResolver(ddl);
+           //console.log(`filename = ${ddl.filename}`);
+           this.getDdlResolver(ddl);
        }
        return promise;
    }

@@ -26,6 +26,7 @@ class DDLRetriever {
        for ( let ddlObj of ddlObjects ){
          console.log(`${ddlObj.owner}:${ddlObj.type}:${ddlObj.name}`);
          const ddl = await devDB.getDDL(ddlObj.owner,ddlObj.type,ddlObj.name);
+         console.log(`fn  = ${ddl.filename}`);
          console.log(`ddl = ${ddl.source}`);
          const filename = `${this.environment.toUpperCase()}_${ddl.filename}`;
          await writeDdlFile(filename, ddl.source);
