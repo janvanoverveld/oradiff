@@ -31,7 +31,8 @@ function starter(pars:string[]){
   }
 
   if (pars[3] && !environments.getAliases().includes(pars[3].toUpperCase())) {
-    console.log(`Second parameter should be ${environments.getAliases()}`);
+    console.log(`First parameter ${pars[2]} should be name of object.`);
+    console.log(`Second parameter ${pars[3]} should be environment and a value of: ${environments.getAliases()}`);
     let messageText:string = '';
     environments.getEnv().environments.forEach( (e) => {
        messageText += `${e.alias}  ${e.name}  ${e.description}  ${(e.default)?"(default)":""}` + nwln;
